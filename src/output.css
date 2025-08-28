@@ -264,6 +264,9 @@
   .left-40 {
     left: calc(var(--spacing) * 40);
   }
+  .left-60 {
+    left: calc(var(--spacing) * 60);
+  }
   .left-80 {
     left: calc(var(--spacing) * 80);
   }
