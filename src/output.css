@@ -209,8 +209,14 @@
   .relative {
     position: relative;
   }
+  .-top-1 {
+    top: calc(var(--spacing) * -1);
+  }
   .-top-8 {
     top: calc(var(--spacing) * -8);
+  }
+  .-top-10 {
+    top: calc(var(--spacing) * -10);
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
@@ -220,6 +226,9 @@
   }
   .top-4 {
     top: calc(var(--spacing) * 4);
+  }
+  .top-8 {
+    top: calc(var(--spacing) * 8);
   }
   .right-0 {
     right: calc(var(--spacing) * 0);
@@ -236,8 +245,17 @@
   .left-4 {
     left: calc(var(--spacing) * 4);
   }
+  .left-20 {
+    left: calc(var(--spacing) * 20);
+  }
   .left-26 {
     left: calc(var(--spacing) * 26);
+  }
+  .left-40 {
+    left: calc(var(--spacing) * 40);
+  }
+  .left-400 {
+    left: calc(var(--spacing) * 400);
   }
   .z-30 {
     z-index: 30;
@@ -254,17 +272,11 @@
   .my-14 {
     margin-block: calc(var(--spacing) * 14);
   }
-  .mt-1 {
-    margin-top: calc(var(--spacing) * 1);
-  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
-  }
-  .mt-6 {
-    margin-top: calc(var(--spacing) * 6);
   }
   .mt-7 {
     margin-top: calc(var(--spacing) * 7);
@@ -292,9 +304,6 @@
   }
   .grid {
     display: grid;
-  }
-  .hidden {
-    display: none;
   }
   .inline-block {
     display: inline-block;
@@ -526,12 +535,6 @@
   .bg-gray-900 {
     background-color: var(--color-gray-900);
   }
-  .bg-gray-900\/20 {
-    background-color: color-mix(in srgb, oklch(21% 0.034 264.665) 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-gray-900) 20%, transparent);
-    }
-  }
   .bg-gray-900\/50 {
     background-color: color-mix(in srgb, oklch(21% 0.034 264.665) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -550,22 +553,10 @@
   .bg-white {
     background-color: var(--color-white);
   }
-  .bg-white\/0 {
-    background-color: color-mix(in srgb, #fff 0%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 0%, transparent);
-    }
-  }
   .bg-white\/20 {
     background-color: color-mix(in srgb, #fff 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
-    }
-  }
-  .bg-white\/80 {
-    background-color: color-mix(in srgb, #fff 80%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 80%, transparent);
     }
   }
   .object-cover {
@@ -615,15 +606,6 @@
   }
   .font-\[Poppins\] {
     font-family: Poppins;
-  }
-  .font-\[po\] {
-    font-family: po;
-  }
-  .font-\[popp\] {
-    font-family: popp;
-  }
-  .font-\[poppings\] {
-    font-family: poppings;
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -729,10 +711,6 @@
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .duration-200 {
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
   }
   .duration-300 {
     --tw-duration: 300ms;
@@ -876,21 +854,9 @@
       }
     }
   }
-  .focus\:ring-1 {
-    &:focus {
-      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
-      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-    }
-  }
-  .focus\:ring-orange-400 {
-    &:focus {
-      --tw-ring-color: var(--color-orange-400);
-    }
-  }
-  .focus\:outline-none {
-    &:focus {
-      --tw-outline-style: none;
-      outline-style: none;
+  .sm\:absolute {
+    @media (width >= 40rem) {
+      position: absolute;
     }
   }
   .sm\:static {
@@ -898,9 +864,9 @@
       position: static;
     }
   }
-  .sm\:block {
+  .sm\:left-0 {
     @media (width >= 40rem) {
-      display: block;
+      left: calc(var(--spacing) * 0);
     }
   }
   .sm\:hidden {
