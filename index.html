@@ -17,6 +17,8 @@
     />
     <script src="script.js" defer></script>
     <title>Alpha Burn Gym</title>
+    <!-- Optimization: Preload Hero Image -->
+    <link rel="preload" as="image" href="assets/hero_standard_gym.png">
   </head>
   <body class="bg-white 2xl:max-w-2xl 2xl:mx-auto font-[Poppins]">
     <header>
@@ -30,9 +32,14 @@
               <p>🔹🔹</p>
             </div>
           </div>
-          <a class="text-2xl sm:font-semibold" href="#">
+          <a class="text-2xl sm:font-semibold" href="index.html">
             Alpha Burn <sup class="text-sm text-orange-400">Gym</sup>
           </a>
+          <!-- Live Occupancy Badge -->
+          <div class="hidden md:flex items-center gap-2 bg-gray-800/80 px-3 py-1 rounded-full border border-gray-700 ml-4 animate-pulse">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+            <span class="text-xs text-white font-mono" id="live-occupancy">Live: 42% Busy</span>
+          </div>
         </div>
 
         <ul
@@ -45,19 +52,22 @@
             <a href="membership.html">Membership</a>
           </li>
           <li class="hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400">
+            <a href="fuel.html" class="flex items-center gap-1 text-green-600"><i class="fa-solid fa-leaf"></i> Fuel Bar</a>
+          </li>
+          <li class="hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400">
             <a href="coaches.html">Coaches</a>
           </li>
           <li class="hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400">
             <a href="schedule.html">Schedule</a>
           </li>
           <li class="hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400">
-            <a href="#">FAQ</a>
+            <a href="faq.html">FAQ</a>
           </li>
           <li class="hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400">
-            <a href="#">Blog</a>
+            <a href="blog.html">Blog</a>
           </li>
           <li class="hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400">
-            <a href="#">Contact Us</a>
+            <a href="contact.html">Contact Us</a>
           </li>
         </ul>
 
@@ -70,42 +80,58 @@
         </div>
       </nav>
 
-      <section class="py-16 md:py-24" style="
-        background: url('assets/Background-B.jpg');
+      <section id="hero-section" class="py-24 md:py-32 relative transition-all duration-1000" style="
+        background: url('assets/hero_standard_gym.png');
         background-position: center;
         background-size: cover;
       ">
-        <div class="text-center mt-12">
-          <h1 class="text-4xl sm:text-6xl font-bold text-white mb-4">
-            Welcome to Alpha Burn Gym
+        <div class="absolute inset-0 bg-black/40"></div> <!-- Overlay for text readability -->
+        <div class="relative z-10 text-center mt-12 px-6">
+          <h1 class="text-5xl sm:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
+            Forge Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Future Self</span>
           </h1>
-        </div>
-
-        <p
-          class="text-xl sm:text-2xl text-gray-200 mb-8 w-[80%] mx-auto text-center"
-        >
-          At Alpha Burn Gym, we provide the right guidance and environment to
-          keep you on track. Every rep, every set, every drop of sweat brings
-          you closer to your best self
-        </p>
-        <p
-          class="text-xl sm:text-2xl text-gray-200 mb-8 w-[80%] mx-auto text-center"
-        >
-          Your journey to fitness starts here!
-        </p>
-        <div class="text-center mt-14">
-          <a
-            href="#"
-            class="bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600 transition duration-300"
-            >Join Now</a
-          >
+          <p class="text-xl sm:text-2xl text-gray-100 mb-10 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md">
+            Experience the next evolution of fitness. <br class="hidden sm:block">
+            AI-driven training, state-of-the-art facility, and a community that pushes limits.
+          </p>
+          <div class="mt-8">
+             <a
+              href="membership.html"
+              class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-10 py-4 rounded-full text-lg font-bold hover:scale-105 hover:shadow-orange-500/50 hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-2"
+            >
+              Start Your Era in 2026 <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </section>
     </header>
+
+    <!-- 3D Interactive Tour Section (Concept) -->
+    <section class="py-12 bg-gray-900 border-b border-gray-800">
+      <div class="max-w-7xl mx-auto px-6">
+         <h2 class="text-2xl sm:text-4xl font-semibold text-center text-white font-[Poppins] mb-8">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">3D Interactive Tour</span>
+          </h2>
+          <div class="relative w-full h-96 bg-gray-800 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-gray-700">
+             <img src="assets/Equipment-1.jpg" alt="Gym Floor 3D" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500">
+             <div class="absolute inset-0 flex items-center justify-center">
+                <button id="enter-3d-btn" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white/20 transition-all transform hover:scale-105 flex items-center gap-3 cursor-pointer z-10">
+                  <i class="fa-solid fa-cube text-blue-400"></i> Enter 3D View
+                </button>
+             </div>
+             <!-- Hotspots -->
+             <div class="absolute top-1/3 left-1/4 w-4 h-4 bg-orange-500 rounded-full animate-ping"></div>
+             <div class="absolute top-1/3 left-1/4 w-4 h-4 bg-orange-500 rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform" title="Cardio Zone"></div>
+             
+             <div class="absolute bottom-1/3 right-1/3 w-4 h-4 bg-blue-500 rounded-full animate-ping delay-75"></div>
+             <div class="absolute bottom-1/3 right-1/3 w-4 h-4 bg-blue-500 rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform" title="Free Weights"></div>
+          </div>
+      </div>
+    </section>
     <!-- .........About section............ -->
     <section class="p-6 sm:p-10 lg:p-12 space-y-18">
       <h2
-        class="text-2xl sm:text-4xl font-semibold text-center font-[Poppins] after:content[''] after:block after:w-13 after:h-1 after:bg-orange-500 after:rounded-full after:mx-auto after:mt-4"
+        class="text-2xl sm:text-4xl font-semibold text-center font-[Poppins] after:content-[''] after:block after:w-13 after:h-1 after:bg-orange-500 after:rounded-full after:mx-auto after:mt-4"
       >
         Welcome
       </h2>
@@ -325,101 +351,102 @@
     </section>
 
     <!-- ........Blog section.......... -->
+    <section class="bg-gray-50 py-16 px-6 sm:px-10 lg:px-12" id="blog-section">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+           <div>
+              <h2 class="text-3xl sm:text-5xl font-bold text-gray-900 font-[Poppins] tracking-tight">Alpha <span class="text-orange-500">Insights</span></h2>
+              <p class="text-gray-500 mt-4 text-lg max-w-xl">Master your mind and body with expert advice on training, nutrition, and recovery.</p>
+           </div>
+           
+      
+           <div class="flex gap-4 mt-6 md:mt-0 overflow-x-auto pb-2">
+              <button class="bg-gray-900 text-white px-5 py-2 rounded-full font-semibold whitespace-nowrap hover:bg-orange-500 transition-colors">All Posts</button>
+              <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full font-semibold whitespace-nowrap hover:border-orange-500 hover:text-orange-500 transition-colors">Training</button>
+              <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full font-semibold whitespace-nowrap hover:border-orange-500 hover:text-orange-500 transition-colors">Nutrition</button>
+              <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full font-semibold whitespace-nowrap hover:border-orange-500 hover:text-orange-500 transition-colors">Mindset</button>
+           </div>
+        </div>
 
-    <section class="bg-gray-100 p-6 sm:p-10 lg:p-12 space-y-6">
-      <h2
-        class="text-2xl sm:text-4xl font-semibold text-center font-[Poppins] after:content[''] after:block after:w-13 after:h-1 after:bg-orange-500 after:rounded-full after:mx-auto after:mt-4"
-      >
-        Latest Blog Posts
-      </h2>
+        <!-- Blog Layout: Spotlight + Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+           
+        
+           <article class="relative group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 row-span-1 lg:row-span-2 h-96 lg:h-auto">
+              <img src="assets/blog_hypertrophy.png" alt="Science of Hypertrophy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              
+              <div class="absolute bottom-0 left-0 p-8 w-full z-10">
+                 <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Science</span>
+                 <h3 class="text-3xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">The Bio-Mechanics of Hypertrophy</h3>
+                 <p class="text-gray-300 mb-6 line-clamp-2">Understand the cellular process of muscle growth to optimize your training stimulation and recovery windows.</p>
+                 
+                 <div class="flex items-center gap-3">
+                    <img src="assets/coach-2.jpg" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Author">
+                    <div class="text-sm">
+                       <p class="text-white font-semibold">Bryan Jacob</p>
+                       <p class="text-gray-400">Head Coach • 8 min read</p>
+                    </div>
+                 </div>
+              </div>
+           </article>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-14">
-        <article class="bg-white rounded-lg shadow-md overflow-hidden relative">
-          <a
-            class="absolute top-4 left-4 bg-red-500 text-white py-1 px-3 rounded"
-            href="#"
-            >Fitness</a
-          >
-          <a
-            class="absolute top-4 left-26 bg-red-500 text-white py-1 px-3 rounded"
-            href="#"
-            >Bodybuilder</a
-          >
-          <img
-            class="w-full h-48 object-cover"
-            src="assets/farmer-walks-2141229_1280.jpg"
-            alt="Gym-image"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">
-              The Benefits of Strength Training
-            </h3>
-            <p class="mt-2 text-gray-600">
-              Discover the numerous benefits of incorporating strength training
-              into your fitness routine.
-            </p>
-            <a href="#" class="text-red-500 mt-4 inline-block">Read More</a>
-          </div>
-        </article>
+           <!-- Side Grid -->
+           <div class="space-y-6">
+              
+              <!-- Side Item 1 -->
+              <article class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow flex gap-4 items-center group cursor-pointer border border-gray-100">
+                 <div class="w-32 h-24 rounded-xl overflow-hidden flex-shrink-0">
+                    <img src="assets/blog_nutrition.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Nutrition">
+                 </div>
+                 <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                       <span class="text-green-600 font-bold text-xs uppercase">Nutrition</span>
+                       <span class="text-gray-400 text-xs">• Jan 14, 2026</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Fuel Your Performance: The Perfect Macro Split</h4>
+                 </div>
+              </article>
 
-        <article class="bg-white rounded-lg shadow-md overflow-hidden relative">
-          <a
-            class="absolute top-4 left-4 bg-red-500 text-white py-1 px-3 rounded"
-            href="#"
-            >Fitness</a
-          >
-          <a
-            class="absolute top-4 left-26 bg-red-500 text-white py-1 px-3 rounded"
-            href="#"
-            >Bodybuilder</a
-          >
-          <img
-            class="w-full h-48 object-cover"
-            src="assets/gym-3675225_1280.jpg"
-            alt="Gym-image"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">Nutrition Tips for Athletes</h3>
-            <p class="mt-2 text-gray-600">
-              Fuel your workouts with the right nutrition. Here are some
-              essential tips for athletes.
-            </p>
-            <a href="#" class="text-red-500 mt-4 inline-block">Read More</a>
-          </div>
-        </article>
+              <!-- Side Item 2 -->
+              <article class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow flex gap-4 items-center group cursor-pointer border border-gray-100">
+                 <div class="w-32 h-24 rounded-xl overflow-hidden flex-shrink-0">
+                    <img src="assets/woman-2250970_1280.jpg" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" alt="Meditation">
+                 </div>
+                 <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                       <span class="text-blue-500 font-bold text-xs uppercase">Mindset</span>
+                       <span class="text-gray-400 text-xs">• Jan 10, 2026</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Why Rest Days Are More Important Than Leg Days</h4>
+                 </div>
+              </article>
 
-        <article class="bg-white rounded-lg shadow-md overflow-hidden relative">
-          <a
-            class="absolute top-4 left-4 bg-red-500 text-white py-1 px-3 rounded"
-            href="#"
-            >Fitness</a
-          >
-          <a
-            class="absolute top-4 left-26 bg-red-500 text-white py-1 px-3 rounded"
-            href="#"
-            >Bodybuilder</a
-          >
-          <img
-            class="w-full h-48 object-cover object-top"
-            src="assets/woman-2250970_1280.jpg"
-            alt="Gym-image"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">
-              Yoga for Flexibility and Balance
-            </h3>
-            <p class="mt-2 text-gray-600">
-              Improve your flexibility and balance with these essential yoga
-              poses.
-            </p>
-            <a href="#" class="text-red-500 mt-4 inline-block">Read More</a>
-          </div>
-        </article>
-        <button
-          class="text-white font-semibold font-[Poppins] col-span-full py-2 px-6 place-self-center mt-12 mb-8 border-2 bg-red-600 cursor-pointer"
-        >
-          VIEW ALL BLOGS POSTS
-        </button>
+              <!-- Side Item 3 -->
+              <article class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow flex gap-4 items-center group cursor-pointer border border-gray-100">
+                 <div class="w-32 h-24 rounded-xl overflow-hidden flex-shrink-0">
+                    <img src="assets/gym-image-3.jpeg" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" alt="Technique">
+                 </div>
+                 <div class="flex-1">
+                     <div class="flex items-center gap-2 mb-1">
+                       <span class="text-red-500 font-bold text-xs uppercase">Technique</span>
+                       <span class="text-gray-400 text-xs">• Jan 05, 2026</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Mastering the Deadlift: 5 Common Mistakes</h4>
+                 </div>
+              </article>
+
+           </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="blog.html" class="inline-flex items-center gap-2 text-gray-900 font-bold hover:text-orange-500 transition-colors text-lg group">
+                View All Articles 
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
       </div>
     </section>
 
@@ -497,6 +524,52 @@
           </footer>
         </blockquote>
       </div>
+    </section>
+
+    <!-- Community Leaderboard Section -->
+    <section class="py-16 bg-white">
+       <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-2xl sm:text-4xl font-semibold text-center font-[Poppins] mb-12">
+            Community Leaderboard 🏆
+        </h2>
+        <div class="bg-gray-50 rounded-2xl p-6 shadow-inner border border-gray-100">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Rank 2 -->
+             <div class="order-2 md:order-1 flex flex-col items-center justify-end">
+                <div class="relative">
+                  <img src="assets/Testimonial-A.jpg" class="w-20 h-20 rounded-full border-4 border-gray-300" alt="Rank 2">
+                  <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gray-300 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">#2</div>
+                </div>
+                <p class="font-bold mt-3 text-lg">Mike W.</p>
+                <p class="text-orange-500 font-mono font-semibold">18,450 pts</p>
+             </div>
+             
+             <!-- Rank 1 -->
+             <div class="order-1 md:order-2 flex flex-col items-center">
+                <div class="relative">
+                  <i class="fa-solid fa-crown text-yellow-400 text-3xl mb-2 absolute -top-10 left-1/2 transform -translate-x-1/2 animate-bounce"></i>
+                  <img src="assets/Testimonial- B.jpg" class="w-28 h-28 rounded-full border-4 border-yellow-400 shadow-xl" alt="Rank 1">
+                  <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-bold">#1</div>
+                </div>
+                <p class="font-bold mt-4 text-xl">Sarah J.</p>
+                <p class="text-orange-500 font-mono font-bold text-lg">22,100 pts</p>
+             </div>
+
+             <!-- Rank 3 -->
+             <div class="order-3 md:order-3 flex flex-col items-center justify-end">
+                <div class="relative">
+                  <img src="assets/testimony.jpg" class="w-20 h-20 rounded-full border-4 border-amber-600" alt="Rank 3">
+                  <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-bold">#3</div>
+                </div>
+                 <p class="font-bold mt-3 text-lg">Emily D.</p>
+                <p class="text-orange-500 font-mono font-semibold">15,200 pts</p>
+             </div>
+          </div>
+          <div class="text-center mt-8">
+            <button class="text-orange-500 hover:text-orange-600 font-semibold">View Full Leaderboard <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+       </div>
     </section>
 
     <!-- ........footer section........ -->
@@ -613,5 +686,37 @@
         </div>
       </div>
     </footer>
+
+    <!-- AI Coach Widget -->
+    <div id="ai-coach-widget" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden bg-white rounded-2xl shadow-2xl w-80 mb-4 border border-gray-200 overflow-hidden transform origin-bottom-right transition-all duration-300">
+            <div class="bg-gray-900 p-4 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <h3 class="text-white font-bold">Alpha AI Coach</h3>
+                </div>
+                <button id="close-chat" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="h-64 p-4 overflow-y-auto bg-gray-50 space-y-3" id="chat-messages">
+                <!-- Bot Msg -->
+                <div class="flex items-start gap-2">
+                     <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><i class="fa-solid fa-robot text-orange-500 text-xs"></i></div>
+                     <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-gray-700 border border-gray-100">
+                        Hello! I'm your personal AI fitness assistant. How can I help you today?
+                     </div>
+                </div>
+            </div>
+            <div class="p-3 bg-white border-t border-gray-100 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask about workouts..." class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                <button id="send-btn" class="bg-orange-500 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-orange-600"><i class="fa-solid fa-paper-plane text-xs"></i></button>
+            </div>
+        </div>
+
+        <!-- FAB -->
+        <button id="toggle-chat" class="animate-bounce w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-lg flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform cursor-pointer">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
   </body>
 </html>
