@@ -60,21 +60,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Desktop Menu */}
-      <ul className={`nav-menu flex flex-col gap-8 fixed top-0 right-0 h-screen w-full sm:w-auto sm:h-auto z-[100] backdrop-blur-lg p-24 sm:p-0 transition-transform duration-300 ease-in-out sm:flex-row sm:static sm:bg-transparent sm:translate-y-0 text-xs ${isOpen ? 'translate-y-0' : '-translate-y-full sm:translate-y-0'}`}>
+      {/* Desktop & Mobile Menu */}
+      <ul className={`nav-menu flex flex-col gap-8 fixed top-0 right-0 h-screen w-full sm:w-auto sm:h-auto z-[100] bg-gray-900/95 sm:bg-transparent backdrop-blur-lg p-12 sm:p-0 transition-transform duration-300 ease-in-out sm:flex-row sm:static sm:translate-y-0 text-xs ${isOpen ? 'translate-x-0' : 'translate-x-full sm:translate-x-0'}`}>
          
-         {/* Close Button for Mobile */}
-         <li className="absolute top-6 right-6 sm:hidden">
-            <button onClick={toggleMenu} className="text-orange-400">
-               <X size={32} />
-            </button>
-         </li>
-
          {navLinks.map((link) => (
-             <li key={link.name} className={`hover:text-orange-400 font-semibold hover:scale-110 hover:transition-transform hover:duration-400 ${link.special ? 'text-orange-400' : ''}`}>
+             <li key={link.name} className={`hover:text-orange-400 font-semibold hover:scale-105 transition-all ${link.special ? 'text-orange-400' : ''}`}>
                <NavLink 
                  to={link.path} 
-                 className={({ isActive }) => isActive ? "text-orange-500" : ""}
+                 className={({ isActive }) => `block w-full py-3 sm:py-2 ${isActive ? "text-orange-500" : ""}`}
                  onClick={() => setIsOpen(false)}
                >
                  {link.icon} {link.name}
@@ -84,12 +77,13 @@ const Navbar = () => {
       </ul>
 
       {/* Mobile Toggle Button */}
-      <div className="sm:hidden z-[110] p-2 cursor-pointer" onClick={toggleMenu}>
-        <span>
-            {isOpen ? <X className="text-orange-400" size={32}/> : <ArrowLeft className="text-orange-400" size={32} style={{ transform: 'rotate(180deg)' }} />} 
-
-        </span>
-      </div>
+      <button 
+        className="sm:hidden z-[110] p-2 text-orange-400 focus:outline-none" 
+        onClick={toggleMenu}
+        aria-label="Toggle Menu"
+      >
+        {isOpen ? <X size={32}/> : <Menu size={32} />} 
+      </button>
     </nav>
   );
 };

@@ -29,35 +29,105 @@ const ChatWidget = () => {
     "Sunday": { m: "Active Recovery", f: "Active Recovery" }
   };
 
+  const trainerKnowledge = {
+    goals: {
+        weightLoss: {
+            keywords: ['lose weight', 'fat loss', 'burn calories', 'slimming', 'weight loss', 'cardio', 'obese', 'lean'],
+            response: "To incinerate fat and get lean, I recommend **High-Intensity Interval Training (HIIT)** combined with calorie-burning full-body movements. Focus on: **Burpees, Kettlebell Swings, and Mountain Climbers**. Aim for a caloric deficit and 3-4 sessions a week!"
+        },
+        muscleGain: {
+            keywords: ['build muscle', 'gain mass', 'get big', 'hypertrophy', 'size', 'strength', 'bulking', 'jacked'],
+            response: "Time to build some serious size! Focus on **Heavy Compound Movements**: **Squats, Deadlifts, and Bench Press**. Stick to a rep range of 8-12 per set and make sure you're eating a caloric surplus with high protein!"
+        },
+        stamina: {
+            keywords: ['stamina', 'endurance', 'cardio', 'running', 'breath', 'v02', 'energy', 'long distance'],
+            response: "To boost your stamina at Pearlsburg, focus on aerobic conditioning. Try **30 minutes on the Rowing Machine** or **stair climber intervals**. Mix in some LISS (Low-Intensity Steady State) twice a week."
+        },
+        toning: {
+            keywords: ['tone', 'definition', 'sculpt', 'shred', 'abs', 'six pack', 'ripped'],
+            response: "Toning is about sculpting muscles and reducing body fat. Focus on **High Volume Training** (12-15 reps) with moderate weights. Add finishing moves like **Cable Flyes or Lunges** to really define the muscle."
+        }
+    },
+    muscleGroups: {
+        chest: {
+            keywords: ['chest', 'pecs', 'bench', 'push day'],
+            response: "King of chest exercises: **Barbell Bench Press**. Follow it up with **Incline Dumbbell Flyes** and **Weighted Dips** to hit the upper and lower pecs."
+        },
+        back: {
+            keywords: ['back', 'lats', 'pull-ups', 'rows', 'posture'],
+            response: "Build a wide V-taper with **Wide-Grip Pull-ups**, **Bent-over Barbell Rows**, and **Seated Lat Pulldowns**. Don't forget Face Pulls for those rear delts!"
+        },
+        legs: {
+            keywords: ['legs', 'quads', 'hamstrings', 'glutes', 'squats', 'leg day'],
+            response: "Leg day is mandatory! Power up with **Barbell Back Squats**, **Bulgarian Split Squats**, and **Romanian Deadlifts**. Your future self will thank you!"
+        },
+        arms: {
+            keywords: ['arms', 'biceps', 'triceps', 'guns', 'curls'],
+            response: "For massive arms: **Barbell Curls** for biceps and **Skull Crushers** for triceps. Also, heavy Close-Grip Bench Press is a secret weapon for arm thickness."
+        },
+        abs: {
+            keywords: ['abs', 'core', 'stomach', 'six pack', 'obliques'],
+            response: "Core stability is key. Perform **Hanging Leg Raises**, **Weighted Planks**, and **Russian Twists**. abs are made in the kitchen, but built in the gym!"
+        }
+    },
+    nutrition: {
+        keywords: ['eat', 'diet', 'protein', 'carbs', 'macros', 'supplement', 'creative', 'food', 'nutrition'],
+        response: "At Pearlsburg, we say nutrition is 70% of the battle. Aim for **1.8g - 2.2g of protein per kg of body weight**. Fuel your workouts with complex carbs like oats and sweet potatoes!"
+    },
+    recovery: {
+        keywords: ['sleep', 'rest', 'sore', 'pain', 'recover', 'stretch', 'injury', 'massage'],
+        response: "Recovery is where growth happens! Get **7-9 hours of sleep** and don't skip your rest days. If you're sore, try some light foam rolling or active recovery like a walk."
+    }
+  };
+
   const getBotResponse = (input) => {
     const lowerInput = input.toLowerCase();
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const today = days[new Date().getDay()];
 
-    if (lowerInput.includes('today') || lowerInput.includes('program') || lowerInput.includes('workout')) {
-        const prog = scheduleDB[today];
-        return `Today is **${today}**.\n💪 Men: ${prog.m}\n🧘‍♀️ Women: ${prog.f}`;
-    }
-
-    for (let day of days) {
-        if (lowerInput.includes(day.toLowerCase())) {
-                const prog = scheduleDB[day];
-                return `On **${day}** we have:\n💪 Men: ${prog.m}\n🧘‍♀️ Women: ${prog.f}`;
+    // Check Goals
+    for (let key in trainerKnowledge.goals) {
+        if (trainerKnowledge.goals[key].keywords.some(word => lowerInput.includes(word))) {
+            return trainerKnowledge.goals[key].response;
         }
     }
 
-    if (lowerInput.includes('yoga')) return "We have Yoga & Recovery sessions every **Saturday**.";
-    if (lowerInput.includes('hiit')) return "HIIT sessions for women are on **Tuesdays**.";
-    if (lowerInput.includes('membership') || lowerInput.includes('cost') || lowerInput.includes('price')) return "We offer various membership plans starting from $29/mo. Check the Membership page!";
-    if (lowerInput.includes('coach') || lowerInput.includes('trainer')) return "Our expert coaches are here to help. You can view their profiles on the Coaches page.";
-    if (lowerInput.includes('smoothie') || lowerInput.includes('fuel')) return "You can pre-order smoothies at our Fuel Bar.";
+    // Check Muscle Groups
+    for (let key in trainerKnowledge.muscleGroups) {
+        if (trainerKnowledge.muscleGroups[key].keywords.some(word => lowerInput.includes(word))) {
+            return trainerKnowledge.muscleGroups[key].response;
+        }
+    }
+
+    // Check Nutrition & Recovery
+    if (trainerKnowledge.nutrition.keywords.some(word => lowerInput.includes(word))) return trainerKnowledge.nutrition.response;
+    if (trainerKnowledge.recovery.keywords.some(word => lowerInput.includes(word))) return trainerKnowledge.recovery.response;
+
+    // Interactive Gym Features
+    if (lowerInput.includes('today') || lowerInput.includes('program') || lowerInput.includes('workout')) {
+        const prog = scheduleDB[today];
+        return `Today at **Pearlsburg Gym** is **${today}**.\n💪 **Men:** ${prog.m}\n🧘‍♀️ **Women:** ${prog.f}\n\nShall we get started with a specific muscle group today?`;
+    }
+
+    if (lowerInput.includes('who') || lowerInput.includes('name') || lowerInput.includes('you')) return "I am the **Pearlsburg AI Coach**, your 24/7 personal trainer! I can help you with workouts, nutrition, and gym schedules.";
+
+    for (let day of days) {
+        if (lowerInput.includes(day.toLowerCase())) {
+            const prog = scheduleDB[today];
+            return `On **${day}** the Pearlsburg schedule is:\n💪 Men: ${prog.m}\n🧘‍♀️ Women: ${prog.f}`;
+        }
+    }
+
+    if (lowerInput.includes('membership') || lowerInput.includes('join') || lowerInput.includes('price')) return "Join the elite at Pearlsburg Gym! Membership starts at just $29/mo. Check our **Membership** page for details.";
+    if (lowerInput.includes('coach') || lowerInput.includes('personal trainer')) return "Our world-class coaches are ready to push you. Visit the **Coaches** page to book a session!";
+    if (lowerInput.includes('location') || lowerInput.includes('where') || lowerInput.includes('address')) return "Pearlsburg Gym is located in the heart of the city. Check the **Contact** page for our exact map!";
 
     const fallbacks = [
-        "That's a great goal! Consistency is key.",
-        "Don't forget to hydrate! Aim for 3-4 liters a day.",
-        "I can help you check the schedule or membership prices.",
-        "Rest is just as important as training. Have you slept 8 hours?",
-        "Keep pushing! You're doing great."
+        "That's a great question! Give me a specific fitness goal like 'lose weight' or 'build muscle' so I can help.",
+        "I'm locked in and ready! Which part of your body are we training today?",
+        "Pearlsburg is all about evolution. Tell me what results you're looking for.",
+        "I'm your AI Coach. Ask me about exercises, nutrition tips, or our gym schedule!",
+        "Every rep brings you closer to your goal. How can I assist your training right now?"
     ];
     return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   };

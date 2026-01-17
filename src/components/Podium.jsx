@@ -13,7 +13,7 @@ const Podium = () => {
         </div>
 
         {/* Podium */}
-        <div className="flex flex-col md:flex-row items-end justify-center gap-8 mb-8 pb-12 border-b border-gray-800">
+        <div className="flex flex-col md:flex-row items-center sm:items-end justify-center gap-8 mb-8 pb-12 border-b border-gray-800">
             
             {/* 2nd Place */}
             <div className="order-2 md:order-1 flex flex-col items-center">
